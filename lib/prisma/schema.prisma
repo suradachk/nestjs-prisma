@@ -12,8 +12,14 @@ datasource db {
 
 model User {
   id        Int      @id @default(autoincrement())
-  username  String   @unique
+  userId    String    @unique @default(uuid()) @map("user_id") @db.VarChar(50)
+  username  String    @unique
+  nickName  String @map("nick_name")
   password  String
-  name      String
-  age       Int
+  firstName  String @map("first_name")
+  lastName  String @map("last_name")
+  email  String
+  refreshToken String?
+  createdAt        DateTime? @default(now()) @map("create_at") @db.Timestamptz(6)
+  updatedAt        DateTime? @updatedAt @map("update_at") @db.Timestamptz(6)
 }
