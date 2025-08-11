@@ -15,3 +15,10 @@ Run Dev
 
 ```npm run dev ```
 
+Change Model
+
+```npm run db:generate:clean```
+
+Push DB
+
+```db:push```
