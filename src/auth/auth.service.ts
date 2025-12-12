@@ -64,7 +64,7 @@ export class AuthService {
       user.userId,
       tokens.refreshToken,
     );
-    if (!updateRefreshToken!) {
+    if (!updateRefreshToken) {
       throw new UnauthorizedException("User can't update refresh token");
     }
     return {
@@ -168,7 +168,7 @@ export class AuthService {
         user.userId,
         refreshTokenNew,
       );
-      if (!updateRefreshToken!) {
+      if (!updateRefreshToken) {
         throw new UnauthorizedException("User can't update refresh token");
       }
       return { ...newPayload, accessToken, refreshToken: refreshTokenNew };

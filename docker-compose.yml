@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  # 🐘 PostgreSQL Database
+  postgres:
+    image: postgres:15-alpine
+    container_name: nestjs_postgres
+    restart: always
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_USER: ${DB_USER:-user}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-pass}
+      POSTGRES_DB: ${DB_NAME:-mydb}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - nestjs_network
+
+  # 🚀 Redis (For Caching & Queues)
+  redis:
+    image: redis:alpine
+    container_name: nestjs_redis
+    restart: always
+    ports:
+      - '6379:6379'
+    volumes:
+      - redis_data:/data
+    networks:
+      - nestjs_network
+
+  # (Optional) 📊 Adminer for Database GUI Management
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - '8080:8080'
+    networks:
+      - nestjs_network
+
+volumes:
+  postgres_data:
+  redis_data:
+
+networks:
+  nestjs_network:
+    driver: bridge
