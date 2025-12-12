@@ -1,5 +1,6 @@
 import { Body, Controller, Get, Logger, Post } from '@nestjs/common';
 import { UserService } from './user.service';
+import { getUserProfile } from 'src/utils/map-model/user-model';
 
 @Controller('user')
 export class UserController {
@@ -10,7 +11,9 @@ export class UserController {
   @Get('')
   async findAll() {
     this.logger.debug('findAll');
-    return await this.userService.findAll();
+    const res = await this.userService.findAll();
+    return res.map((u) => getUserProfile(u));
+    // return await this.userService.findAll();
   }
 
   @Post('')
