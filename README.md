@@ -1,24 +1,23 @@
 # nestjs-prisma
-template backend with nestjs
 
-cd to services [service/core]
+template backend with nestjs
 
 Install Package
 
-``` npm install ```
+`npm install`
 
 Prisma Setup
 
-``` npm run generate ```
+`npm run generate`
 
 Run Dev
 
-```npm run dev ```
+`npm run dev `
 
 Change Model
 
-```npm run db:generate:clean```
+`npm run db:generate:clean`
 
 Push DB
 
-```db:push```
+`db:push`
